@@ -11,5 +11,5 @@ except getopt.error as err:
 
 levelLogging = getattr(logging, opts[0][1].upper()) if opts and opts[0][0] in ("-l", "--log") else logging.INFO
 
-logName = "log/log-" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".log"
+logName = "log-" + datetime.now().strftime("%Y-%m-%d_%H-%M-%S") + ".log"
 logging.basicConfig(handlers=[logging.FileHandler(logName, 'w', 'utf-8')], level=levelLogging, format='%(asctime)s %(levelname)s %(name)s %(message)s')
