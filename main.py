@@ -36,7 +36,7 @@ runner  = CrawlerRunner(
 
 dou = st.text_input('Para ATOS NORMATIVOS escreva dou1, para ATOS DE PESSOAL escreva dou2, para CONTRATOS, EDITAIS E AVISOS escreva dou3', 'dou3')
 st.write('Aguarde o processo para baixar o csv', dou)
-crawlDou(runner, data, 'dou3')
+crawlDou(runner, data, 'dou1')
 reactor.run()
 
 if (os.path.exists("items.jl")):
