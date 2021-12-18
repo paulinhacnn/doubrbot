@@ -34,24 +34,25 @@ runner  = CrawlerRunner(
     }
 )
 
-dou = st.text_input('Para ATOS NORMATIVOS escreva dou1, para ATOS DE PESSOAL escreva dou2, para CONTRATOS, EDITAIS E AVISOS escreva dou3', 'dou3')
-st.write('Aguarde o processo para baixar o csv', dou)
-crawlDou(runner, '17-12-2021', 'dou1')
-reactor.run()
+if __name__ == '__main__':
+    dou = st.text_input('Para ATOS NORMATIVOS escreva dou1, para ATOS DE PESSOAL escreva dou2, para CONTRATOS, EDITAIS E AVISOS escreva dou3', 'dou3')
 
-if (os.path.exists("items.jl")):
-    writeResult("result.json", "items.jl")
-else:
-    raise FileNotFoundError("Required files not found. Try again later")
+    crawlDou(runner, '17-12-2021', 'dou1')
+    reactor.run()
+
+    if (os.path.exists("items.jl")):
+        writeResult("result.json", "items.jl")
+    else:
+        raise FileNotFoundError("Required files not found. Try again later")
 
 
-def get_table_download_link_csv(df):
-    #csv = df.to_csv(index=False)
-    csv = pd.read_json(df)
-    csv = csv.to_csv().encode()
-    #b64 = base64.b64encode(csv.encode()).decode() 
-    b64 = base64.b64encode(csv).decode()
-    href = f'<a href="data:file/csv;base64,{b64}" download="captura.csv" target="_blank">Download csv file</a>'
-    return href
-df = "result.json"
-st.markdown(get_table_download_link_csv(df), unsafe_allow_html=True)
+    def get_table_download_link_csv(df):
+        #csv = df.to_csv(index=False)
+        csv = pd.read_json(df)
+        csv = csv.to_csv().encode()
+        #b64 = base64.b64encode(csv.encode()).decode() 
+        b64 = base64.b64encode(csv).decode()
+        href = f'<a href="data:file/csv;base64,{b64}" download="captura.csv" target="_blank">Download csv file</a>'
+        return href
+    df = "result.json"
+    st.markdown(get_table_download_link_csv(df), unsafe_allow_html=True)
