@@ -6,6 +6,6 @@ queuelib==1.6.2
 requests==2.23.0
 Scrapy==2.5.1
 streamlit==0.82.0
-pyzmq==17.0.0
-ipykernel==4.8.2
+pyzmq==22.3.0
+ipykernel==6.6.0
 
