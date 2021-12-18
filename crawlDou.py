@@ -15,7 +15,7 @@ def crawlDou(runner, data, secao):
     queueData1 = queue.Queue()
     queueData1.put(True)
     t1 = threading.Thread(target=loadingWheel, args=(queueData1, "Fetching home page from " + data + " DOU "))
-    t1.start()
+    t1.start(stop_after_crawl=False)
 
     yield runner.crawl(Dou, data=data, secao=secao)
     
