@@ -15,7 +15,7 @@ def crawlDou(runner, data, secao):
     queueData1 = queue.Queue()
     queueData1.put(True)
     t1 = threading.Thread(target=loadingWheel, args=(queueData1, "Fetching home page from " + data + " DOU "))
-    t1.start(stop_after_crawl=False)
+    t1.start()
 
     yield runner.crawl(Dou, data=data, secao=secao)
     
@@ -31,7 +31,7 @@ def crawlDou(runner, data, secao):
     queueData2 = queue.PriorityQueue()
     queueData2.put(0)
     t2 = threading.Thread(target=loadingBar, args=(queueData2, len(urls), "Fetching sections "))
-    t2.start(stop_after_crawl=False)
+    t2.start()
     yield runner.crawl(DouSection, queue=queueData2, start_urls=urls)
     queueData2.put(len(urls) * -1)
     yield t2.join()
